@@ -24,7 +24,13 @@ $(function (){
 	}).next().click(function (){
 		slide(2220);
 	}).nextAll('li').click(function (){
-		slide(4525);
+		var x;
+		if(document.documentElement.scrollHeight){
+			x=document.documentElement.scrollHeight
+		}else{
+			x=document.body.scrollHeight;
+		}
+		slide(x);
 	})
 	
 	function slide(t){

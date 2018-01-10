@@ -20,45 +20,19 @@ $(function (){
 		})
 		
 	list.eq(1).click(function (){
-		$('body,html').animate({
-			'scrollTop': 820
-		},164)
+		slide(820);
+	}).next().click(function (){
+		slide(2220);
+	}).nextAll('li').click(function (){
+		slide(4525);
 	})
-		
-	list.eq(2).click(function (){
-		$('body,html').animate({
-			'scrollTop': 2220
-		},444)
-	})	
-		
-	list.eq(3).click(function (){
-		var t;
-		if(document.documentElement.scrollHeight){
-			t=document.documentElement.scrollHeight;
-		}else{
-			t=document.body.scrollHeight;
-		}
-		console.log(t)
-		
+	
+	function slide(t){
 		$('body,html').animate({
 			'scrollTop': t
-		},905)
-	})	
-		
-	list.eq(4).click(function (){
-		var t;
-		if(document.documentElement.scrollHeight){
-			t=document.documentElement.scrollHeight;
-		}else{
-			t=document.body.scrollHeight;
-		}
-		console.log(t)
-		
-		$('body,html').animate({
-			'scrollTop': t
-		},905)
-	})		
-		
+		},t/5)
+	}
+	
 	var mySwiper=new Swiper('.swiper-container',{
 		autoplay: {
 		autoplay: true,

@@ -84,15 +84,30 @@ $(function (){
 		})
 	})
 	
-})
-
-$(function (){
 	
 		var ul=$(".proshow .pros-list")
 		var btn=true;
 		
 		$(window).scroll(function (){
-			
+			var helper=function (list,j){
+				var oli=$('<li class="pros-dt"></li>');
+				var odiv=$('<div class="dt-br"></div>');
+				var price=$('<span></span>');
+				price.html(list.price[j]);
+				price.addClass("br-pr")
+
+				var cu=$('<span class="br-cu">¥</span>')
+				var buy=$('<span class="br-buying">立即抢购</span>')
+				odiv.html('<span class="br-title">'+ list.title[j]+'</span>');
+				cu.appendTo(odiv);
+				price.appendTo(odiv);
+				buy.appendTo(odiv);
+
+				oli.html('<img src="'+ list.src[j] +'"/>');
+				odiv.appendTo(oli);
+
+				ul.append(oli);
+			}
 			var viewHeight=document.documentElement.clientHeight;
 			var scrollY=document.documentElement.scrollTop||document.body.scrollTop;
 			var Top=viewHeight+scrollY;
@@ -105,30 +120,13 @@ $(function (){
 					async:true,
 					success: function (data){
 						
-					
 						for(var i=0;i<data.list.length;i++){
 						
 						var list=data.list[i];
 						
 						for(var j=0;j<list.src.length;j++){
 							
-							var oli=$('<li class="pros-dt"></li>');
-							var odiv=$('<div class="dt-br"></div>');
-							var price=$('<span></span>');
-							price.html(list.price[j]);
-							price.addClass("br-pr")
-							
-							var cu=$('<span class="br-cu">¥</span>')
-							var buy=$('<span class="br-buying">立即抢购</span>')
-							odiv.html('<span class="br-title">'+ list.title[j]+'</span>');
-							cu.appendTo(odiv);
-							price.appendTo(odiv);
-							buy.appendTo(odiv);
-							
-							oli.html('<img src="'+ list.src[j] +'"/>');
-							odiv.appendTo(oli);
-							
-							ul.append(oli);
+							helper(list,j);
 						}
 					}	
 					}
